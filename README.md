@@ -3,20 +3,20 @@
 A static website (plain HTML and CSS, no build step). Host it free on Cloudflare Pages or Netlify by connecting this repository.
 
 ## Files
-- `index.html`: the home page (all sections)
-- `privacy.html`: privacy policy (draft, needs a lawyer's check)
-- `assets/`: favicon, sample report PDF and its preview images
+- `public/index.html`: the home page (all sections)
+- `public/privacy.html`: privacy policy (draft, needs a lawyer's check)
+- `public/assets/`: favicon, sample report PDF and its preview images
+- `wrangler.jsonc`: tells Cloudflare Workers to serve the `public` folder
 
 ## Publish
-1. Cloudflare Pages: Create a project → Connect to Git → pick this repository.
-   Framework preset: **None**. Build command: *(leave empty)*. Output directory: `/`.
-2. It goes live at `<project>.pages.dev`. Any change pushed to this repository republishes the site automatically.
-3. Custom domain: in the Pages project, add your domain (e.g. `limestoneplains.com.au`) and follow the DNS steps.
+1. Cloudflare Workers & Pages → this repository is connected as a Worker. Deploy command: `npx wrangler deploy` (reads `wrangler.jsonc`).
+2. It goes live at `limestone-plains-website.<your-subdomain>.workers.dev`. Any change pushed to this repository republishes the site automatically.
+3. Custom domain: in the Worker's Domains tab, add your domain (e.g. `limestoneplains.com.au`) and follow the DNS steps.
 
 ## Before you open for bookings (launch checklist)
 Every claim on the site must be true on the day it goes live.
 
-- [ ] Remove the orange **PREVIEW** ribbon (the `preview-ribbon` line at the top of `index.html`)
+- [ ] Remove the orange **PREVIEW** ribbon (the `preview-ribbon` line at the top of `public/index.html`)
 - [ ] Replace placeholders: email, phone, ABN (search for `[`)
 - [ ] Certified Quantity Surveyor and Registered Planner reviewers engaged (the site says every report is reviewed)
 - [ ] Professional indemnity insurance in place (the site says you hold it)
