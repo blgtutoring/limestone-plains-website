@@ -176,6 +176,8 @@ section.block{padding-block:clamp(56px,8vw,104px)}
 
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:32px}
+.who{display:flex;flex-direction:column;gap:20px}
+.portrait{width:100%;max-width:260px;aspect-ratio:1;object-fit:cover;border-top:3px solid var(--orange);filter:saturate(.92)}
 .about .bio{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px}
 .about .bio p+p{margin-top:14px}
 .creds{border-top:2px solid var(--ink)}
@@ -438,12 +440,15 @@ footer a{color:var(--paper)}
 
 <section class="block" id="about">
   <div class="wrap about">
-    <p class="label">Who you deal with</p>
+    <div class="who">
+      <p class="label">Who you deal with</p>
+      <img class="portrait" src="assets/brendan.jpg" alt="Brendan Le Galludec, founder of Limestone Plains Advisory" width="300" height="300">
+    </div>
     <div class="bio">
       <div>
         <h2 style="margin-bottom:22px">Brendan Le Galludec</h2>
         <p class="lead" style="margin-bottom:14px">I started Limestone Plains Advisory because I kept seeing the same problem on Canberra building projects.</p>
-        <p class="v" style="color:var(--soft)">Homeowners commit to a block, a design or a builder's quote before anyone has given them an independent number. The builder prices their own job and the designer designs, but nobody's job is to tell the owner whether the whole thing stacks up. By the time the real cost shows up, the decision has already been made.</p>
+        <p class="v" style="color:var(--soft)">Homeowners commit to a block, a design or a builder's quote before anyone has given them an independent number. The builder prices their own job and the designer designs, but nobody's job is to tell the owner whether the whole project makes sense. By the time the real cost shows up, the decision has already been made.</p>
         <p class="v" style="color:var(--soft)">My background in asset management taught me to look at a property the way an investor does: what it costs, what it returns and what could go wrong. Limestone Plains brings that to Canberra homes, early enough to change the decision.</p>
         <p class="v" style="color:var(--soft)">I lead every job and sign off every report, with the costs checked by a Certified Quantity Surveyor and the planning checked by a Registered Planner.</p>
       </div>
