@@ -253,6 +253,29 @@ button.pages:hover img:nth-child(3){transform:rotate(5deg) translateX(8px)}
 .facts span{font-size:14px;color:var(--soft)}
 @media (max-width:880px){.sample .inner{grid-template-columns:1fr}.pages{height:360px}}
 
+/* reviews: auto-scrolling strip (JS duplicates the cards; without JS or with reduced motion it is a swipeable row) */
+.reviews{overflow:hidden}
+.rv-note{font-size:15px;font-family:var(--mono);letter-spacing:.04em;color:var(--muted)}
+.rv-viewport{--rv-pad:max(var(--gutter),calc((100vw - var(--wrap))/2 + var(--gutter)));overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-inline:var(--rv-pad);scroll-padding-inline:var(--rv-pad)}
+.rv-viewport::-webkit-scrollbar{display:none}
+.rv-track{list-style:none;margin:0;padding:6px 0 10px;display:flex;gap:24px;width:max-content}
+.rv-card{width:min(360px,82vw);flex:none;scroll-snap-align:start;display:flex;flex-direction:column;gap:16px;padding:22px;background:var(--white);border:1px solid var(--hair);border-top:3px solid var(--ink);transition:border-color .2s ease,transform .2s ease}
+.rv-card:hover{border-top-color:var(--orange);transform:translateY(-3px)}
+.rv-card .label{display:flex;justify-content:space-between;gap:12px;font-size:12px}
+.rv-tag{color:var(--muted);border:1px dashed var(--muted);padding:1px 6px;font-size:11px}
+.rv-card blockquote{margin:0;font-size:17px;line-height:1.55;color:var(--ink);flex:1}
+.rv-card blockquote::before{content:"\201C";display:block;font-family:var(--display);font-weight:600;font-size:54px;line-height:.6;color:var(--orange);margin-bottom:6px}
+.rv-who{font-family:var(--mono);font-size:13px;letter-spacing:.06em;color:var(--muted);border-top:1px solid var(--hair);padding-top:12px}
+.rv-ctrl{display:none;margin-top:20px}
+.rv-ctrl .vbtn{color:var(--ink);border-color:var(--hair);min-height:40px;font-size:12px}
+.rv-ctrl .vbtn:hover{border-color:var(--ink);color:var(--ink)}
+.rv.auto .rv-ctrl{display:block}
+.rv.auto .rv-viewport{overflow:hidden;scroll-snap-type:none;padding-inline:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.rv.auto .rv-track{animation:rv var(--rv-dur,60s) linear infinite}
+.rv.auto:hover .rv-track,.rv.auto:focus-within .rv-track,.rv.auto.paused .rv-track{animation-play-state:paused}
+@media (min-width:1360px){.rv.auto .rv-viewport{-webkit-mask-image:linear-gradient(90deg,transparent 0 56px,#000 150px,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent 0 56px,#000 150px,#000 94%,transparent)}}
+@keyframes rv{to{transform:translateX(calc(-50% - 12px))}}
+
 /* about */
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:32px}
 .who{display:flex;flex-direction:column;gap:20px}
@@ -354,6 +377,7 @@ footer a{color:var(--paper)}
     <a href="#reports">Reports</a>
     <a href="#how">How it works</a>
     <a href="#sample">Sample report</a>
+    <a href="#reviews">Reviews</a>
     <a href="#about">About</a>
     <a href="#faq">FAQ</a>
     <a class="cta" href="#contact">Book a check</a>
@@ -566,6 +590,31 @@ footer a{color:var(--paper)}
   </div>
 </section>
 
+<section class="block reviews" id="reviews">
+  <div class="wrap">
+    <div class="head">
+      <p class="label">Reviews</p>
+      <div class="t">
+        <h2>What clients say.</h2>
+        <p class="lead rv-note">Example reviews, shown until our first clients have left real ones.</p>
+      </div>
+    </div>
+  </div>
+  <div class="rv" id="rv">
+    <div class="rv-viewport">
+      <ul class="rv-track" aria-label="Client reviews">
+        <li class="rv-card"><p class="label"><span>Pre-Purchase Check</span><span class="rv-tag">Example</span></p><blockquote>We had an auction on the Saturday and needed to know by Thursday if a granny flat would fit. The answer came back in time, with the tree issue we'd have missed.</blockquote><p class="rv-who">[Client name] · [Suburb]</p></li>
+        <li class="rv-card"><p class="label"><span>Feasibility Study</span><span class="rv-tag">Example</span></p><blockquote>We were stuck between extending and building a second dwelling. Seeing both options costed side by side made the decision in one evening.</blockquote><p class="rv-who">[Client name] · [Suburb]</p></li>
+        <li class="rv-card"><p class="label"><span>Quote Review</span><span class="rv-tag">Example</span></p><blockquote>Two of our three quotes left out the driveway and the sewer connection. Knowing that before we signed saved us a very awkward conversation later.</blockquote><p class="rv-who">[Client name] · [Suburb]</p></li>
+        <li class="rv-card"><p class="label"><span>Pre-Purchase Check</span><span class="rv-tag">Example</span></p><blockquote>Clear about what the block allowed and what it didn't. We walked away from a house that looked perfect on paper, and we're glad we did.</blockquote><p class="rv-who">[Client name] · [Suburb]</p></li>
+        <li class="rv-card"><p class="label"><span>Feasibility Study</span><span class="rv-tag">Example</span></p><blockquote>The low, likely and high costs gave our broker exactly what he needed. The report was easy to read and straight to the point.</blockquote><p class="rv-who">[Client name] · [Suburb]</p></li>
+        <li class="rv-card"><p class="label"><span>Quote Review</span><span class="rv-tag">Example</span></p><blockquote>A list of questions to put to the builder, in plain order. The builder took them seriously and the price came down on two items.</blockquote><p class="rv-who">[Client name] · [Suburb]</p></li>
+      </ul>
+    </div>
+    <div class="wrap rv-ctrl"><button class="vbtn rv-pause" type="button" aria-pressed="false">Pause</button></div>
+  </div>
+</section>
+
 <section class="block" id="about">
   <div class="wrap about">
     <div class="who">
@@ -744,6 +793,18 @@ footer a{color:var(--paper)}
       bar.querySelectorAll('a').forEach(function(a){a.tabIndex=on?0:-1;});}
     new IntersectionObserver(function(es){pastHero=!es[0].isIntersecting&&es[0].boundingClientRect.top<0;sync();}).observe(hero);
     new IntersectionObserver(function(es){atForm=es[0].isIntersecting;sync();},{rootMargin:'0px 0px -20% 0px'}).observe(contact);
+  }
+
+  /* reviews strip: duplicate the cards for a seamless loop, unless the visitor prefers less motion */
+  var rv=document.getElementById('rv');
+  if(rv&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var tr=rv.querySelector('.rv-track'), orig=[].slice.call(tr.children);
+    orig.forEach(function(li){var c=li.cloneNode(true);c.setAttribute('aria-hidden','true');tr.appendChild(c);});
+    rv.classList.add('auto');
+    function speed(){rv.style.setProperty('--rv-dur',Math.max(30,(tr.scrollWidth/2)/45)+'s');}
+    speed();addEventListener('resize',speed);
+    var pb=rv.querySelector('.rv-pause');
+    pb.addEventListener('click',function(){var on=rv.classList.toggle('paused');pb.setAttribute('aria-pressed',on?'true':'false');pb.textContent=on?'Play':'Pause';});
   }
 
   /* sample page viewer */
