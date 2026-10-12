@@ -21,7 +21,10 @@ Every claim on the site must be true on the day it goes live.
 - [ ] Certified Quantity Surveyor and Registered Planner reviewers engaged (the site says every report is reviewed)
 - [ ] Professional indemnity insurance in place (the site says you hold it)
 - [ ] Check with your employer that outside work is allowed
-- [ ] Prices confirmed after interviews (Products section)
+- [ ] Prices and turnaround times confirmed after interviews (report tiles and the "How quickly" FAQ: 2–3 / 5–10 / 3–5 business days)
+- [ ] Real phone number in the tiles, footer and phone booking bar (`tel:+61400000000` appears several times)
+- [ ] Once the domain is live, make the share image address absolute in `index.html` (`og:image` → `https://limestoneplains.com.au/assets/og-image.jpg`) so Facebook and LinkedIn pick it up
+- [ ] Trust signals once they exist: reviewer names and credentials, first client quotes (with permission), link to Google reviews
 - [ ] Connect the enquiry form: create a free form endpoint (e.g. Formspree) and paste its URL into `data-endpoint=""` on the `<form id="enquiry">`
 - [ ] Privacy policy reviewed by a lawyer; fill in the bracketed items
 - [ ] Only mention the University of Canberra partnership once it is agreed in writing
